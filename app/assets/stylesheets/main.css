@@ -25,7 +25,7 @@
 }
 
 
-#large {
+.large {
   display: inline-block; 
   height: 550px;
   width: 800px;
@@ -34,7 +34,7 @@
   border-style: solid; 
 }
 
-#small {
+.small {
   border-color: red;
   border-width: 2px; 
   height: 200px;
@@ -43,10 +43,10 @@
   border-style: solid; 
 }
 
-.artworks {
+#artworks {
 
 }
 
-.map {
+#map {
 
 }
