@@ -43,3 +43,13 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# Use for uploading images
+gem 'carrierwave'
+gem 'rmagick'
+
+# Use for assistance with accessing coordinates in database and passing to google maps
+gem 'geocoder'
+
+#Use for accessing controller variables in javascript
+gem 'gon'

@@ -1,6 +1,8 @@
 StreetartGallery::Application.routes.draw do
   
-  root 'main#index'
+  resources :artworks
+  
+  root to: 'main#index'
 
   
   # The priority is based upon order of creation: first created -> highest priority.
