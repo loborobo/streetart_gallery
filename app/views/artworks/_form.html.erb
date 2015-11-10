@@ -1,4 +1,32 @@
-<%= form_for(@artwork) do |f| %>
+<script data-turbolinks-track="true" src="/assets/artworks.js?body=1"></script>
+
+<%= form_for @artwork, :html => { :multipart => true } do |f| %>
+  <div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  
+  <div>
+    <%= f.label :image %><br>
+    <%= f.file_field :image %><br>
+  </div>
+
+  <p><a href="#" id="gps_link">Use your device location</a></p>
+
+  <p>Or choose your location on a map</p>
+  <div id="mark_location"></div>
+
+  <div>
+    <%= f.text_field :latitude %>
+  </div>
+  <div>
+    <%= f.text_field :longitude %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  
   <% if @artwork.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@artwork.errors.count, "error") %> prohibited this artwork from being saved:</h2>
@@ -10,8 +38,5 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  
 <% end %>

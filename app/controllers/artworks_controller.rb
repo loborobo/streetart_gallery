@@ -4,12 +4,13 @@ class ArtworksController < ApplicationController
   # GET /artworks
   # GET /artworks.json
   def index
-    gon.artworks = Artwork.all
+    @artworks = Artwork.all
   end
 
   # GET /artworks/1
   # GET /artworks/1.json
   def show
+    @artwork = Artwork.find(params[:id])
   end
 
   # GET /artworks/new
@@ -17,36 +18,32 @@ class ArtworksController < ApplicationController
     @artwork = Artwork.new
   end
 
-  # GET /artworks/1/edit
-  def edit
-  end
-
   # POST /artworks
   # POST /artworks.json
   def create
     @artwork = Artwork.new(artwork_params)
 
-    respond_to do |format|
-      if @artwork.save
-        format.html { redirect_to @artwork, notice: 'Artwork was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @artwork }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @artwork.errors, status: :unprocessable_entity }
-      end
+    if @artwork.save
+     redirect_to artworks_path, notice: 'Artwork was successfully created.' 
+    else
+      render action: 'new'
     end
   end
+
+  # GET /artworks/1/edit
+  def edit
+    @artwork = Artwork.find(params[:id])
+  end
+
 
   # PATCH/PUT /artworks/1
   # PATCH/PUT /artworks/1.json
   def update
     respond_to do |format|
-      if @artwork.update(artwork_params)
-        format.html { redirect_to @artwork, notice: 'Artwork was successfully updated.' }
-        format.json { head :no_content }
+      if @artwork.update_attributes(artwork_params)
+        redirect_to artwork_path, notice: 'Artwork was successfully updated.'
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @artwork.errors, status: :unprocessable_entity }
+        render action: 'edit' 
       end
     end
   end
@@ -69,6 +66,6 @@ class ArtworksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def artwork_params
-      params[:artwork]
+      params.require(:artwork).permit(:name, :latitude, :longitude, :image, :description)
     end
 end

@@ -3,7 +3,8 @@ class Artwork < ActiveRecord::Base
   has_many :favourites
   has_many :submissions
 
-  geocoded_by :full_street_address
-  reverse_geocoded_by :latitude, :longitude
-  after_validation :reverse_geocode
+  mount_uploader :image, ImageUploader
+
+  validates :name, :image, :latitude, :longitude, presence: true
+
 end
