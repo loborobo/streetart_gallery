@@ -5,6 +5,7 @@ class CreateArtworks < ActiveRecord::Migration
       t.float :latitude
       t.float :longitude
       t.string :image
+      t.string :creator
 
       t.timestamps
     end

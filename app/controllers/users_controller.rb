@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    @user = current_user
   end
 
   def new
@@ -12,22 +12,26 @@ class UsersController < ApplicationController
   end
 
   def create
-    
-    if params[:is_artist] == "on"
-      params[:user][:type] = 'Artist'
-    end
-   
     @user = User.new(user_params)
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to main_index_path, notice: "Welcome aboard, #{@user.firstname}!"
+      if @user.type == 'Artist'
+        redirect_to artists_new_path
+      else
+        redirect_to main_index_path, notice: "Welcome aboard, #{@user.firstname}!"
+      end
     else 
       render :new
     end
   end 
 
   def edit
+    if !current_user
+      redirect_to main_index_path, notice: "You are not logged in."
+    else
+      @user = current_user
+    end
   end
 
   def delete
@@ -37,7 +41,11 @@ class UsersController < ApplicationController
   protected
 
   def user_params
-    params.require(:user).permit(:username, :email, :firstname, :lastname, :password, :password_confirmation, :type)
+    if params[:is_artist] == "on"
+      params.require(:user).permit(:username, :email, :firstname, :lastname, :password, :password_confirmation, :description).merge(type: 'Artist')
+    else
+      params.require(:user).permit(:username, :email, :firstname, :lastname, :password, :password_confirmation)
+    end
   end
 
 end

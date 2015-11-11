@@ -35,16 +35,23 @@ class ArtworksController < ApplicationController
     @artwork = Artwork.find(params[:id])
   end
 
+  #GET /artworks/claim_art
+  def claim_art #form 3 - artists add their work to profile
+    @artworks = Artworks.where(creator: null)
+  end
+
+  #PATCH /artworks/add
+  def submit_claim
+    @artworks = Artwork.new #update selected art with artist id in creator
+  end
 
   # PATCH/PUT /artworks/1
   # PATCH/PUT /artworks/1.json
   def update
-    respond_to do |format|
-      if @artwork.update_attributes(artwork_params)
-        redirect_to artwork_path, notice: 'Artwork was successfully updated.'
-      else
-        render action: 'edit' 
-      end
+    if @artwork.update_attributes(artwork_params)
+      redirect_to artwork_path, notice: 'Artwork was successfully updated.'
+    else
+      render action: 'edit' 
     end
   end
 
@@ -66,6 +73,6 @@ class ArtworksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def artwork_params
-      params.require(:artwork).permit(:name, :latitude, :longitude, :image, :description)
+      params.require(:artwork).permit(:name, :latitude, :longitude, :image, :description, :creator)
     end
 end

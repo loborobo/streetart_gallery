@@ -11,19 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151110175949) do
-
-  create_table "artists", force: true do |t|
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20151109195412) do
 
   create_table "artworks", force: true do |t|
     t.string   "name"
     t.float    "latitude"
     t.float    "longitude"
     t.string   "image"
+    t.string   "creator"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -41,7 +36,6 @@ ActiveRecord::Schema.define(version: 20151110175949) do
     t.string   "artwork_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "description"
   end
 
   create_table "users", force: true do |t|
@@ -51,6 +45,7 @@ ActiveRecord::Schema.define(version: 20151110175949) do
     t.string   "email"
     t.string   "password_digest"
     t.string   "type"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

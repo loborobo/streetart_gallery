@@ -1,47 +1,9 @@
 <h1>Sign Up</h1>
-
-<%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-    <div>
-      <%= pluralize(@user.errors.count, "Error") %> Sign up data error. Sign up failed:
-      <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= f.label :username %><br>
-    <%= f.text_field :username %>
-  </div>
-  <div>
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div>
-    <%= f.label :firstname, "Firstname" %><br>
-    <%= f.text_field :firstname %>
-  </div>
-  <div>
-    <%= f.label :lastname, "Lastname" %><br>
-    <%= f.text_field :lastname %>
-  </div>
-  <div>
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
-  </div>
-  <div>
-    <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation %>
+  <div id="artist_form">
+    <%= label :is_artist, "Are you an artist?" %>
+    <input id="artist_checkbox" type="checkbox" name="is_artist">
   </div>
 
-  <div>
-    <%= f.label :is_artist, "Are you an artist?" %>
-    <input type="checkbox" name="is_artist">
-  </div>
+<%= render 'user_form' %>
 
-  <div><%= f.submit "Submit" %></div>
-<% end %>
-<br>
+<%= link_to 'Back', main_index_path %>

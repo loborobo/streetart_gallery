@@ -3,3 +3,8 @@
  @import "artworks";
  @import "main";
 
+.thumbnail {
+  display: inline-block;
+  height: 200px; 
+  width: 200px; 
+}

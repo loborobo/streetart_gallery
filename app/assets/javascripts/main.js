@@ -1,9 +1,12 @@
-$(document).ready(function() {
+$(document).on('page:change', function(event) {
+  console.log('main.js loaded')
 
-  initMap(); 
+  if ($('#main_map').length > 0) {
+    initMainMap();
+  };
   
   var map;
-  function initMap() {
+  function initMainMap() {
     console.log("main.js called");
     map = new google.maps.Map(document.getElementById('main_map'), {
       center: {lat: 43.660, lng: -79.402},
@@ -22,6 +25,5 @@ $(document).ready(function() {
     } 
 
   }
-  
+});
 
-})

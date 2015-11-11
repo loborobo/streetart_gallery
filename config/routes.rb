@@ -1,15 +1,15 @@
 StreetartGallery::Application.routes.draw do
   
+  
   # get "sessions/new"
   # get "sessions/destroy"
   resources :sessions, only: [:new, :create, :destroy]
   resources :artworks
-  resources :users
+  resources :users, except: :index
+  resources :artists, only: :index
   get "main/index"
-
   
-  
-  root to: 'main#index'
+  root to: 'main#index' 
 
   
   # The priority is based upon order of creation: first created -> highest priority.

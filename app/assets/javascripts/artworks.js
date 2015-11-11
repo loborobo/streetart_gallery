@@ -1,12 +1,10 @@
-$(document).ready(function(){
+$(document).on('page:change', function(event) {
   console.log('artwork.js loaded')
   $('#gps_link').click(getLocation);
 
-  initMap();
-
-  google.maps.event.addListener(picker_map, 'click', function(event) {
-    placeMarker(event.latLng);
-  });
+  if ($('#mark_location').length > 0) {
+    initMap();
+  };
 
   function getLocation() {
       if (navigator.geolocation) {
@@ -22,9 +20,12 @@ $(document).ready(function(){
 
   var picker_map;
   function initMap() {
-    picker_map = new google.maps.Map(document.getElementById('mark_location'), {
+    picker_map = new google.maps.Map($('#mark_location')[0], {
       center: {lat: 43.660, lng: -79.402},
       zoom: 12
+    });
+    google.maps.event.addListener(picker_map, 'click', function(event) {
+      placeMarker(event.latLng);
     });
     console.log("artwork.js got called");
     return picker_map;
