@@ -4,6 +4,8 @@ StreetartGallery::Application.routes.draw do
   # get "sessions/destroy"
   resources :sessions, only: [:new, :create, :destroy]
   resources :artworks
+  resources :users
+  get "main/index"
 
   
   

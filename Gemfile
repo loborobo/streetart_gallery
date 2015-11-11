@@ -33,7 +33,7 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -53,3 +53,4 @@ gem 'geocoder'
 
 #Use for accessing controller variables in javascript
 gem 'gon'
+gem 'pry'

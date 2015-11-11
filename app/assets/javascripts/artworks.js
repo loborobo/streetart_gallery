@@ -23,7 +23,7 @@ $(document).ready(function(){
   var picker_map;
   function initMap() {
     picker_map = new google.maps.Map(document.getElementById('mark_location'), {
-      center: {lat: 43.670, lng: -79.444},
+      center: {lat: 43.660, lng: -79.402},
       zoom: 12
     });
     console.log("artwork.js got called");
