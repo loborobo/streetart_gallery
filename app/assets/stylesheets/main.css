@@ -1,10 +1,23 @@
+html, body {
+  top: 0;
+}
+
+
 #container {
  
 
 }
 
+header {
+  text-align: right;
+  top: -10;
+  background-color: gray;
+  height: 70px;
+  vertical-align: middle;
+}
+
 #main {
-  margin-top: 110px;
+  margin-top: 10px;
   position: relative;
 }
 
@@ -22,19 +35,20 @@
   display: inline-block;
   position: absolute;
   height: 550px;
-  width: 800px;
+  width: 50%;
   border-color: blue;
   border-width: 2px; 
   border-style: solid; 
 }
 
 .small {
+  display: inline-block;
   border-color: red;
-  position: absolute;
+  position: relative;
+  float: right;
   border-width: 2px; 
-  height: 200px;
-  width: 350px;
-  margin-left: 750px; 
+  height: 550px;
+  width: 50%;
   border-style: solid; 
 }
 
@@ -46,7 +60,12 @@
 }
 
 #artworks {
+}
 
+#artworks img {
+  display: block;
+  height: 100%;
+  margin: auto; 
 }
 
 #main_map {
