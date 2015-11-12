@@ -24,7 +24,7 @@ class ArtworksController < ApplicationController
     @artwork = Artwork.new(artwork_params)
 
     if @artwork.save
-     redirect_to artworks_path, notice: 'Artwork was successfully created.' 
+     redirect_to main_index_path, notice: 'Artwork was successfully created.' 
     else
       render action: 'new'
     end

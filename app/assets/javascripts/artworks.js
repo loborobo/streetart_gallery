@@ -22,7 +22,7 @@ $(document).on('page:change', function(event) {
   function initMap() {
     picker_map = new google.maps.Map($('#mark_location')[0], {
       center: {lat: 43.660, lng: -79.402},
-      zoom: 12
+      zoom: 13
     });
     google.maps.event.addListener(picker_map, 'click', function(event) {
       placeMarker(event.latLng);

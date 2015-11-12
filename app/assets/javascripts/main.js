@@ -10,7 +10,7 @@ $(document).on('page:change', function(event) {
     console.log("main.js called");
     map = new google.maps.Map(document.getElementById('main_map'), {
       center: {lat: 43.660, lng: -79.402},
-      zoom: 12
+      zoom: 13
     });
 
     var artworks = gon.artworks
