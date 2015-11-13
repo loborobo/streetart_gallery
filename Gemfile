@@ -56,4 +56,6 @@ gem 'geocoder'
 gem 'gon'
 gem 'pry'
 
+gem 'lodash-rails'
+
 

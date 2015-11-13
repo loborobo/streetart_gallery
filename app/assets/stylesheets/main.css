@@ -10,7 +10,6 @@ html, body {
 
 header {
   text-align: right;
-  top: -10;
   background-color: gray;
   height: 70px;
   vertical-align: middle;
@@ -64,10 +63,20 @@ header {
 
 #artworks img {
   display: block;
-  height: 100%;
-  margin: auto; 
+  margin: auto;
+  max-height: 100%;
+  max-width: 100%;
+  vertical-align: middle;
 }
 
 #main_map {
 
+}
+
+.pause {
+  
+}
+
+.play {
+  
 }

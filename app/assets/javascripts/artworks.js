@@ -33,6 +33,7 @@ $(document).on('page:change', function(event) {
 
   var marker;
   function placeMarker(location) {
+    console.log(marker)
     if ( marker ) {
       marker.setPosition(location);
     } else {

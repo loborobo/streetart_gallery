@@ -1,7 +1,7 @@
 <header>
   <h4>
     <% if current_user %>
-      Signed in as <%= current_user.username %> | <%= link_to "Log out", session_path("current"), method: :delete %> | <%= link_to "Submit Art", new_artwork_path %>
+      Signed in as <%= current_user.username %> | <%= link_to "Log out", session_path("current"), method: :delete %> | <%= link_to "Submit Art", new_artwork_path, 'data-no-turbolink' => true %>
     <% else %>
       <%= link_to "Log In", new_session_path %> | <%=link_to "Sign Up", new_user_path %> |
     <% end %>
