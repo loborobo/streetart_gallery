@@ -3,11 +3,15 @@ var iterate_slideshow;
 $(document).on('page:change', function(event) {
   console.log('main.js loaded')
 
+// #artwork and #main_map div
+
   var map;
   var all_markers = [];
   var i = 0;
   var red_marker = "#F74C39"
   var yellow_marker = "#F7DA36"
+  var paused = false;
+  var prev = false;
 
   if (typeof(gon)!= 'undefined') {
     var artworks_list = gon.artworks;
@@ -19,12 +23,40 @@ $(document).on('page:change', function(event) {
       initMainMap();
       setMarkers();
       initPic();
-      iterate_slideshow = setInterval(showPictures, 2000);
+      iterate_slideshow = setInterval(pauseAndPlay, 3000);
     } else {
         clearInterval(iterate_slideshow)
         console.log(iterate_slideshow)
     };
   };
+
+  function pauseAndPlay() {
+    if (paused == false) { 
+      showPictures()
+    };
+  }
+
+  $('#pause').on('click', function(e) {
+    e.preventDefault();
+    paused = true;
+  });
+
+  $('#play').on('click', function(e) {
+    e.preventDefault();
+    paused = false;
+  });
+
+  $('#next').on('click', function(e) {
+    e.preventDefault();
+    showPictures();    
+  });
+ 
+  $('#previous').on('click', function(e) {
+    e.preventDefault();
+    prev = true
+    showPictures();
+    prev = false; 
+  });
 
   function initMainMap() {
     console.log("init map called");
@@ -71,7 +103,15 @@ $(document).on('page:change', function(event) {
   function showPictures() {
     marker_to_change.setIcon(pinSymbol(red_marker))
     marker_to_change.setZIndex(i + 100)
-    i++;
+    if (prev == true) {
+      if (i == 0) {
+        i = artworks_list.length;
+      };
+      i--;
+    } else {
+      i++;
+    }
+
     if (i == artworks_list.length) {
       i = 0;
     };
@@ -80,9 +120,10 @@ $(document).on('page:change', function(event) {
     var image_lng = current_art.longitude;
     marker_to_change = _.result(_.findWhere(all_markers, {'id' : current_art.id}), 'marker')
     imageTag = "<img src="+ current_art.image.url+">"
-    $('#artworks').html(imageTag);
-    map.setCenter(new google.maps.LatLng(image_lat, image_lng));
+    $('#artworks').html(imageTag).show('slide', {direction: 'right'}, 1000);
+    map.panTo(new google.maps.LatLng(image_lat, image_lng));
     marker_to_change.setIcon(pinSymbol(yellow_marker))
     marker_to_change.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
   }
+
 });
