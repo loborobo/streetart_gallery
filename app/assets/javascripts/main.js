@@ -63,6 +63,7 @@ $(document).on('page:change', function(event) {
 
   $('#next').on('click', function(e) {
     e.preventDefault();
+    paused = true; 
     slideAway();
     setTimeout(changePictures, 1000);
     setTimeout(slideIn, 1000);    
@@ -70,7 +71,8 @@ $(document).on('page:change', function(event) {
  
   $('#previous').on('click', function(e) {
     e.preventDefault();
-    prev = true
+    paused = true; 
+    prev = true;
     rewind();
     setTimeout(setPrevToFalse, 2000);
   });
@@ -111,7 +113,7 @@ $(document).on('page:change', function(event) {
     marker_to_change.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
   }
 
-  // initialize map and set markers
+  // initialize map and set markers, populate marker window info
 
   function initMainMap() {
     console.log("init map called");
@@ -151,7 +153,6 @@ $(document).on('page:change', function(event) {
     }
    setMarkerWindows(); 
   } 
-
 
   function setMarkerWindows() {
     console.log(artworks_list)
