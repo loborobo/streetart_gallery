@@ -6,7 +6,6 @@ $(document).on('page:change', function(event) {
 // #artwork and #main_map div
 
   var map;
-  var all_markers = [];
   var i = 0;
   var red_marker = "#F74C39"
   var yellow_marker = "#F7DA36"
@@ -23,7 +22,7 @@ $(document).on('page:change', function(event) {
       initMainMap();
       setMarkers();
       initPic();
-      iterate_slideshow = setInterval(pauseAndPlay, 3000);
+      iterate_slideshow = setInterval(pauseAndPlay, 4000);
     } else {
         clearInterval(iterate_slideshow)
         console.log(iterate_slideshow)
@@ -31,9 +30,25 @@ $(document).on('page:change', function(event) {
   };
 
   function pauseAndPlay() {
-    if (paused == false) { 
-      showPictures()
+    if (paused == false) {
+      slideAway();
+      setTimeout(changePictures, 1000);
+      setTimeout(slideIn, 1000);
     };
+  }
+
+  function slideAway() {
+    $('#artworks').hide('slide', {direction: 'left'}, 1000);
+  }
+
+  function slideIn() {
+    $('#artworks').show('slide', {direction: 'right'}, 1000);
+  }
+
+  function rewind() {
+    $('#artworks').hide('slide', {direction: 'right'}, 1000)
+    setTimeout(changePictures, 1000)
+    setTimeout($('#artworks').show('slide', {direction: 'left'}, 1000), 1000);
   }
 
   $('#pause').on('click', function(e) {
@@ -48,15 +63,55 @@ $(document).on('page:change', function(event) {
 
   $('#next').on('click', function(e) {
     e.preventDefault();
-    showPictures();    
+    slideAway();
+    setTimeout(changePictures, 1000);
+    setTimeout(slideIn, 1000);    
   });
  
   $('#previous').on('click', function(e) {
     e.preventDefault();
     prev = true
-    showPictures();
-    prev = false; 
+    rewind();
+    setTimeout(setPrevToFalse, 2000);
   });
+
+  function setPrevToFalse() {
+    prev = false; 
+  }
+  
+  function initPic() {
+    var imageTag = "<img src="+ artworks_list[i].image.url+">"
+    $('#artworks').html(imageTag)
+  };
+
+  var marker_to_change = artworks_list[0].marker; 
+  function changePictures() {
+    marker_to_change.setIcon(pinSymbol(red_marker))
+    marker_to_change.setZIndex(i + 100)
+    if (prev == true) {
+      if (i == 0) {
+        i = artworks_list.length;
+      };
+      i--;
+    } else {
+      i++;
+    }
+
+    if (i == artworks_list.length) {
+      i = 0;
+    };
+    var current_art = artworks_list[i]
+    var image_lat = current_art.latitude;
+    var image_lng = current_art.longitude;
+    marker_to_change = artworks_list[i].marker
+    imageTag = "<img src="+ current_art.image.url+">"
+    $('#artworks').html(imageTag)
+    map.panTo(new google.maps.LatLng(image_lat, image_lng));
+    marker_to_change.setIcon(pinSymbol(yellow_marker))
+    marker_to_change.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
+  }
+
+  // initialize map and set markers
 
   function initMainMap() {
     console.log("init map called");
@@ -79,51 +134,38 @@ $(document).on('page:change', function(event) {
 
   function setMarkers() {
     console.log("setting markers")
+    var infowindow = null; 
     for (var i = 0; i < artworks_list.length; i++)  {
       var latitude = artworks_list[i].latitude;
       var longitude = artworks_list[i].longitude; 
       var latlong = {lat: latitude, lng: longitude}
-      var image_marker = [artworks_list[i].id, latlong]
+      var image_marker = [artworks_list[i].id, latlong];
       var marker = new google.maps.Marker({
         position: latlong,
-        icon: pinSymbol(red_marker)
+        icon: pinSymbol(red_marker),
+        map: map,
+        zIndex: i +100
       });
-    marker.setMap(map);
-    marker.setZIndex(i + 100);
-    all_markers.push({id: artworks_list[i].id, marker: marker});
+      
+      artworks_list[i].marker = marker;
     }
-  }
-  
-  function initPic() {
-    var imageTag = "<img src="+ artworks_list[i].image.url+">"
-    $('#artworks').html(imageTag)
-  };
+   setMarkerWindows(); 
+  } 
 
-  var marker_to_change = all_markers[0].marker; 
-  function showPictures() {
-    marker_to_change.setIcon(pinSymbol(red_marker))
-    marker_to_change.setZIndex(i + 100)
-    if (prev == true) {
-      if (i == 0) {
-        i = artworks_list.length;
-      };
-      i--;
-    } else {
-      i++;
+
+  function setMarkerWindows() {
+    console.log(artworks_list)
+    var infowindow = new google.maps.InfoWindow({
+      content: 'message'
+    });
+    for (var i = 0; i < artworks_list.length; i++) {
+      var marker = artworks_list[i].marker;
+      var art_info = "This is " + artworks_list[i].id
+      google.maps.event.addListener(marker, 'click', function(){
+        infowindow.setContent(art_info);
+        infowindow.open(map, this);
+      });
     }
-
-    if (i == artworks_list.length) {
-      i = 0;
-    };
-    var current_art = artworks_list[i]
-    var image_lat = current_art.latitude;
-    var image_lng = current_art.longitude;
-    marker_to_change = _.result(_.findWhere(all_markers, {'id' : current_art.id}), 'marker')
-    imageTag = "<img src="+ current_art.image.url+">"
-    $('#artworks').html(imageTag).show('slide', {direction: 'right'}, 1000);
-    map.panTo(new google.maps.LatLng(image_lat, image_lng));
-    marker_to_change.setIcon(pinSymbol(yellow_marker))
-    marker_to_change.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
   }
 
 });
