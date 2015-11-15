@@ -146,7 +146,7 @@ $(document).on('page:change', function(event) {
         map: map,
         zIndex: i +100
       });
-      
+
       artworks_list[i].marker = marker;
     }
    setMarkerWindows(); 
@@ -155,17 +155,21 @@ $(document).on('page:change', function(event) {
 
   function setMarkerWindows() {
     console.log(artworks_list)
-    var infowindow = new google.maps.InfoWindow({
-      content: 'message'
-    });
     for (var i = 0; i < artworks_list.length; i++) {
       var marker = artworks_list[i].marker;
       var art_info = "This is " + artworks_list[i].id
-      google.maps.event.addListener(marker, 'click', function(){
-        infowindow.setContent(art_info);
-        infowindow.open(map, this);
-      });
+      setArtInfo(marker, art_info);
     }
+  }
+
+  function setArtInfo(marker, art_info) {
+    var infowindow = new google.maps.InfoWindow({
+      content: art_info
+    });
+         
+    google.maps.event.addListener(marker, 'click', function(){
+      infowindow.open(map, this);
+    });
   }
 
 });
