@@ -89,5 +89,15 @@ header {
   position: relative;
   display: block;
   clear: both;
-  margin: auto;
+}
+
+.art_thumb {
+  height: 105px; 
+  width: 105px;
+}
+
+.art_thumb img {
+  max-height: 100%;
+  max-width: 100%;
+  margin: auto; 
 }

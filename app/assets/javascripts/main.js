@@ -157,8 +157,20 @@ $(document).on('page:change', function(event) {
     console.log(artworks_list)
     for (var i = 0; i < artworks_list.length; i++) {
       var marker = artworks_list[i].marker;
-      var art_info = "This is " + artworks_list[i].id
+      var art_info = '<div>'+
+        '<p><b>Title: </b><a href="/artworks/'+artworks_list[i].id+'">' + artworks_list[i].name + '</a></p>'+
+        '<p><b>Artist: </b>' + setArtCreator(artworks_list[i].creator) + '</p>'+
+        '<div class="art_thumb"><img src="'+ artworks_list[i].image.url+'"/></div>'+
+      '</div>'
       setArtInfo(marker, art_info);
+    }
+  }
+
+  function setArtCreator(art_creator) {
+    if (art_creator == null) {
+      return "unknown"
+    } else {
+      return art_creator
     }
   }
 
