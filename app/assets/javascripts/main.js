@@ -14,6 +14,7 @@ $(document).on('page:change', function(event) {
 
   if (typeof(gon)!= 'undefined') {
     var artworks_list = gon.artworks;
+    var artists_list = gon.artists; 
     initEverything()
   };
   
@@ -160,18 +161,27 @@ $(document).on('page:change', function(event) {
       var marker = artworks_list[i].marker;
       var art_info = '<div>'+
         '<p><b>Title: </b><a href="/artworks/'+artworks_list[i].id+'">' + artworks_list[i].name + '</a></p>'+
-        '<p><b>Artist: </b>' + setArtCreator(artworks_list[i].creator) + '</p>'+
+        '<p><b>Artist: </b><a href="/artist'+findArtistOrIndex(artworks_list[i].creator)+'">' + setArtCreator(artworks_list[i].creator) + '</a></p>'+
         '<div class="art_thumb"><img src="'+ artworks_list[i].image.url+'"/></div>'+
       '</div>'
       setArtInfo(marker, art_info);
     }
   }
 
+  
+  function findArtistOrIndex(art_creator) {
+    if (art_creator == null) {
+      return "s"; 
+    } else {
+      return "/" + art_creator
+    }
+  } 
+
   function setArtCreator(art_creator) {
     if (art_creator == null) {
       return "unknown"
     } else {
-      return art_creator
+      return _.result(_.findwhere(artists_list, {'id': art_creator}), 'name')
     }
   }
 
