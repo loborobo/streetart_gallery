@@ -16,6 +16,7 @@ $(document).on('page:change', function(event) {
     var artworks_list = gon.artworks;
     var artists_list = gon.artists; 
     initEverything()
+    var marker_to_change = artworks_list[0].marker;
   };
   
   function initEverything() {
@@ -87,7 +88,7 @@ $(document).on('page:change', function(event) {
     $('#artworks').html(imageTag)
   };
 
-  var marker_to_change = artworks_list[0].marker; 
+   
   function changePictures() {
     marker_to_change.setIcon(pinSymbol(red_marker))
     marker_to_change.setZIndex(i + 100)
@@ -160,7 +161,7 @@ $(document).on('page:change', function(event) {
     for (var i = 0; i < artworks_list.length; i++) {
       var marker = artworks_list[i].marker;
       var art_info = '<div>'+
-        '<p><b>Title: </b><a href="/artworks/'+artworks_list[i].id+'">' + artworks_list[i].name + '</a></p>'+
+        '<p><b>Title: </b>' + artworks_list[i].name + '</p>'+
         '<p><b>Artist: </b><a href="/artist'+findArtistOrIndex(artworks_list[i].creator)+'">' + setArtCreator(artworks_list[i].creator) + '</a></p>'+
         '<div class="art_thumb"><img src="'+ artworks_list[i].image.url+'"/></div>'+
       '</div>'
