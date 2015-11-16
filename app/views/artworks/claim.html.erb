@@ -1,0 +1,14 @@
+<h2>Claim Your Art!</h2>
+<h4>Do any of these belong to you?</h4>
+  <%= form_tag("/artworks/claim", method: "put") do %> 
+    <% @artworks.each do |art| %>
+      <div class="art_tiles">      
+        <div class="thumbnail"><img src='<%= art.image.url %>'/>
+          <div class="claim_checkbox">
+            <input id="<%= art.id %>" type="checkbox" name="<%= art.id %>" data-art-id="<%= art.id %>">
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div><%= submit_tag "Submit" %></div>
+  <% end %>

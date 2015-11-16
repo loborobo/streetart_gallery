@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       if @user.type == 'Artist'
-        redirect_to artists_new_path
+        redirect_to artworks_claim_path
       else
         redirect_to main_index_path, notice: "Welcome aboard, #{@user.firstname}!"
       end

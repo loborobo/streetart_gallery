@@ -15,7 +15,11 @@ class ArtworksController < ApplicationController
 
   # GET /artworks/new
   def new
-    @artwork = Artwork.new
+    if !current_user
+      redirect_to main_index_path, notice: "Please log in to submit art"
+    else
+      @artwork = Artwork.new
+    end
   end
 
   # POST /artworks
@@ -24,7 +28,7 @@ class ArtworksController < ApplicationController
     @artwork = Artwork.new(artwork_params)
 
     if @artwork.save
-     redirect_to main_index_path, notice: 'Artwork was successfully created.' 
+     redirect_to main_index_path, flash[:notice] = 'Artwork was successfully created.' 
     else
       render action: 'new'
     end
@@ -35,14 +39,20 @@ class ArtworksController < ApplicationController
     @artwork = Artwork.find(params[:id])
   end
 
-  #GET /artworks/claim_art
-  def claim_art #form 3 - artists add their work to profile
-    @artworks = Artworks.where(creator: null)
+  #GET /artworks/claim
+  def claim #form 3 - artists add their work to profile
+    @artworks = Artwork.all
   end
 
   #PATCH /artworks/add
   def submit_claim
-    @artworks = Artwork.new #update selected art with artist id in creator
+    @artworks = []
+    params.each do |i|
+      if params[:checked_art] == "on"
+        binding.pry
+        @artworks.push(params[:checked_art])
+      end
+    end    
   end
 
   # PATCH/PUT /artworks/1

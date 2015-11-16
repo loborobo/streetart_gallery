@@ -3,3 +3,30 @@
   height: 300px;
   width: 300px; 
 }
+
+.thumbnail {
+  position: relative;
+}
+
+.thumbnail img {
+  max-height: 70%;
+
+}
+
+.claim_checkbox {
+  position: absolute;
+  bottom: 0;
+  right: 5px; 
+
+}
+
+input[type="checkbox"] {
+  width: 20px; height: 20px;
+  border: 1px solid #aaa;
+  background: #f8f8f8;
+  border-radius: 3px;
+}
+
+.art_tiles {
+  display: inline-block;
+}

@@ -27,7 +27,6 @@ $(document).on('page:change', function(event) {
       iterate_slideshow = setInterval(pauseAndPlay, 4000);
     } else {
         clearInterval(iterate_slideshow)
-        console.log(iterate_slideshow)
     };
   };
 
@@ -192,7 +191,18 @@ $(document).on('page:change', function(event) {
     });
          
     google.maps.event.addListener(marker, 'click', function(){
+      var obj = artworks_list.filter(function(art){
+        return art.marker == marker
+      })[0];
+      paused = true;
+      console.log(obj)
+      i = obj.id;
+      prev = true; 
+      changePictures()
+      slideIn();
+      setPrevToFalse();      
       infowindow.open(map, this);
+      map.panTo(event.latLng);
     });
   }
 

@@ -1,23 +1,29 @@
 html, body {
-  top: 0;
+  height: 100%;
+  width: 100%;
+  position: fixed;
 }
 
 
-#container {
- 
-
+.jumbotron {
+  padding: 0;
+  position: relative;
+  margin-bottom: 0;
+  text-align: center;
 }
 
 header {
+  top: 0;
   text-align: right;
-  background-color: gray;
+  background-color: lightgray;
   height: 70px;
   vertical-align: middle;
 }
 
 #main {
-  margin-top: 10px;
+  margin-top: 0px;
   position: relative;
+  height: 100%
 }
 
 #left_info_panel {
@@ -31,30 +37,20 @@ header {
 
 
 .main_map_container {
-  display: inline-block;
-  position: absolute;
-  height: 550px;
-  width: 50%;
-  border-color: blue;
-  border-width: 2px; 
-  border-style: solid; 
+  /*display: block;*/
+  height: 40%;
+  width: 100%;
 }
 
 .artworks_container {
-  display: inline-block;
-  border-color: red;
-  position: relative;
-  float: right;
-  border-width: 2px; 
-  height: 550px;
-  width: 50%;
-  border-style: solid; 
+  height: 50%;
+  background-image: url("Brick-Wall-Background-bw-faded.jpg");
 }
 
 #artworks {
   width: 100%;
   height: 100%;
-  background-color: gray;
+  vertical-align: middle;
 }
 
 #artworks img {
@@ -63,6 +59,9 @@ header {
   max-height: 100%;
   max-width: 100%;
   vertical-align: middle;
+  position: relative;
+  top:50%;
+  transform: translateY(-50%);
 }
 
 #main_map {
@@ -85,10 +84,15 @@ header {
 
 }
 
+
+.button_container {
+  margin: auto;
+}
 .slideshow_buttons {
   position: relative;
+  bottom: 32px;
   display: block;
-  clear: both;
+  margin: auto;
 }
 
 .art_thumb {

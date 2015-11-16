@@ -3,10 +3,14 @@ StreetartGallery::Application.routes.draw do
   
   # get "sessions/new"
   # get "sessions/destroy"
+  get "artworks/claim"
+  put "artworks/claim" => "artworks#submit_claim"
   resources :sessions, only: [:new, :create, :destroy]
   resources :artworks
-  resources :users, except: [:index, :show]
-  resources :artists, only: [:index, :show]
+  resources :users, except: [:index]
+  resources :artists, only: [:show,]
+ 
+  
   get "main/index"
   
   root to: 'main#index' 

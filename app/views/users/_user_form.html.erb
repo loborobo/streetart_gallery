@@ -10,6 +10,11 @@
     </div>
   <% end %>
 
+  <div id="artist_form">
+    <%= label :is_artist, "Are you an artist?" %>
+    <input id="artist_checkbox" type="checkbox" name="is_artist" unchecked>
+  </div>
+
   <div>
     <%= f.label :username %><br>
     <%= f.text_field :username %>
@@ -35,7 +40,7 @@
     <%= f.password_field :password_confirmation %>
   </div>
 
-  <div id='artist_signup'>
+  <div id="artist_signup">
     <div>
       <%= f.label :description %><br>
       <%= f.text_area :description %>
