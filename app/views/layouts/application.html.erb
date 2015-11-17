@@ -11,13 +11,13 @@
   <script src="http://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.core.js"></script>
   <script src="http://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.slide.js"></script>
   <script
-  src="//maps.googleapis.com/maps/api/js?key=AIzaSyBUUGp7a-1sOHPgm_NwHA2e8HasF75Tomo&signed_in=true"></script>
+  src="//maps.googleapis.com/maps/api/js?key=AIzaSyBUUGp7a-1sOHPgm_NwHA2e8HasF75Tomo" type="text/javascript"></script>
 </head>
 <body>
-<%= include_gon %>
-<div id="main">
-<%= render 'layouts/header' %>
-<%= yield %>
-</div><!-- #main -->
+  <%= include_gon %>
+  <%= render 'layouts/header' %>
+  <div id="main">
+    <%= yield %>
+  </div>
 </body>
 </html>

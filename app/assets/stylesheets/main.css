@@ -21,7 +21,7 @@ header {
 }
 
 #main {
-  margin-top: 0px;
+  margin-top: 50px;
   position: relative;
   height: 100%
 }
@@ -38,13 +38,13 @@ header {
 
 .main_map_container {
   /*display: block;*/
-  height: 40%;
+  height: 50%;
   width: 100%;
 }
 
 .artworks_container {
   height: 50%;
-  background-image: url("Brick-Wall-Background-bw-faded.jpg");
+  background-image: url("Brick-Wall-Background-bw.jpg");
 }
 
 #artworks {
@@ -104,4 +104,8 @@ header {
   max-height: 100%;
   max-width: 100%;
   margin: auto; 
+}
+
+.container {
+  margin-left: 0; 
 }

@@ -46,13 +46,9 @@ class ArtworksController < ApplicationController
 
   #PATCH /artworks/add
   def submit_claim
-    @artworks = []
-    params.each do |i|
-      if params[:checked_art] == "on"
-        binding.pry
-        @artworks.push(params[:checked_art])
-      end
-    end    
+    @artworks = Artwork.where(id: params[:art_]);
+    @artworks.update_all(creator: current_user.id )
+    redirect_to main_index_path, notice: 'Artworks have been claimed!'
   end
 
   # PATCH/PUT /artworks/1
@@ -86,3 +82,8 @@ class ArtworksController < ApplicationController
       params.require(:artwork).permit(:name, :latitude, :longitude, :image, :description, :creator)
     end
 end
+
+
+# 
+
+

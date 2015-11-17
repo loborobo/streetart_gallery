@@ -119,8 +119,8 @@ $(document).on('page:change', function(event) {
   function initMainMap() {
     console.log("init map called");
     map = new google.maps.Map($('#main_map')[0], {
-      center: {lat: 43.660, lng: -79.402},
-      zoom: 13
+      center: {lat: 43.657, lng: -79.400},
+      zoom: 14
     });
   }
 
@@ -181,7 +181,7 @@ $(document).on('page:change', function(event) {
     if (art_creator == null) {
       return "unknown"
     } else {
-      return _.result(_.findwhere(artists_list, {'id': art_creator}), 'name')
+      return _.result(_.findWhere(artists_list, {'id': art_creator}), 'username');
     }
   }
 
@@ -195,14 +195,12 @@ $(document).on('page:change', function(event) {
         return art.marker == marker
       })[0];
       paused = true;
-      console.log(obj)
       i = obj.id;
       prev = true; 
-      changePictures()
+      changePictures();
       slideIn();
-      setPrevToFalse();      
+      setPrevToFalse();    
       infowindow.open(map, this);
-      map.panTo(event.latLng);
     });
   }
 
