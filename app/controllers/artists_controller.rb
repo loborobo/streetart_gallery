@@ -1,6 +1,7 @@
 class ArtistsController < ApplicationController
   def index
     @artists = Artist.all
+    @artworks = Artwork.where('creator IS NOT null')
   end
 
   def show

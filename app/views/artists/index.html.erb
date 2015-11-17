@@ -1,2 +1,21 @@
-<h1>Artists#index</h1>
-<p>Find me in app/views/artists/index.html.erb</p>
+<h1>Artists</h1>
+
+<div class='artist_listings'>
+  <% @artists.each do |artist| %>
+    <div class="artist_listing">
+    <% @artist_art = [] %>
+    <% @artworks.each do |art| %>
+      <% if art.creator.to_i == artist.id %>
+        <% @artist_art.push(art) %>
+      <% end %>
+    <% end %>
+    <% if @artist_art.length > 0 %>
+      <h4><a href="/artists/<%=artist.id%>"><%= artist.firstname %> <%= artist.lastname %></a></h4>
+      <p><%= artist.description %></p>
+      <% @artist_art.each do |art| %>
+        <div class="thumbnail"><img src="<%= art.image.url %>"/></div>
+      <% end %>
+    <% end %>
+    </div> <!-- each artist listing -->
+  <% end %>
+</div> <!-- all artist listings -->

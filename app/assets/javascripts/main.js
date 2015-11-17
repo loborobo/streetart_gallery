@@ -39,17 +39,17 @@ $(document).on('page:change', function(event) {
   }
 
   function slideAway() {
-    $('#artworks').hide('slide', {direction: 'left'}, 1000);
+    $('.artworks').hide('slide', {direction: 'left'}, 1000);
   }
 
   function slideIn() {
-    $('#artworks').show('slide', {direction: 'right'}, 1000);
+    $('.artworks').show('slide', {direction: 'right'}, 1000);
   }
 
   function rewind() {
-    $('#artworks').hide('slide', {direction: 'right'}, 1000)
+    $('.artworks').hide('slide', {direction: 'right'}, 1000)
     setTimeout(changePictures, 1000)
-    setTimeout($('#artworks').show('slide', {direction: 'left'}, 1000), 1000);
+    setTimeout($('.artworks').show('slide', {direction: 'left'}, 1000), 1000);
   }
 
   $('#pause').on('click', function(e) {
@@ -81,10 +81,21 @@ $(document).on('page:change', function(event) {
   function setPrevToFalse() {
     prev = false; 
   }
+
+  $('.artworks').on("mouseenter", "img", function(){
+    paused = true; 
+    $(this).addClass('highlightClass')
+    
+  })
+
+  $('.artworks').on("mouseleave", "img", function(){
+    paused = false;
+    $(this).removeClass('highlightClass')
+  })
   
   function initPic() {
     var imageTag = "<img src="+ artworks_list[i].image.url+">"
-    $('#artworks').html(imageTag)
+    $('.artworks').html(imageTag)
   };
 
    
@@ -107,8 +118,8 @@ $(document).on('page:change', function(event) {
     var image_lat = current_art.latitude;
     var image_lng = current_art.longitude;
     marker_to_change = artworks_list[i].marker
-    imageTag = "<img src="+ current_art.image.url+">"
-    $('#artworks').html(imageTag)
+    imageTag = '<a href="/artworks/'+artworks_list[i].id+'"><img src="'+ current_art.image.url+'"></a>'
+    $('.artworks').html(imageTag)
     map.panTo(new google.maps.LatLng(image_lat, image_lng));
     marker_to_change.setIcon(pinSymbol(yellow_marker))
     marker_to_change.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
@@ -120,7 +131,7 @@ $(document).on('page:change', function(event) {
     console.log("init map called");
     map = new google.maps.Map($('#main_map')[0], {
       center: {lat: 43.657, lng: -79.400},
-      zoom: 14
+      zoom: 15
     });
   }
 
@@ -164,6 +175,7 @@ $(document).on('page:change', function(event) {
         '<p><b>Artist: </b><a href="/artist'+findArtistOrIndex(artworks_list[i].creator)+'">' + setArtCreator(artworks_list[i].creator) + '</a></p>'+
         '<div class="art_thumb"><img src="'+ artworks_list[i].image.url+'"/></div>'+
       '</div>'
+
       setArtInfo(marker, art_info);
     }
   }
@@ -173,15 +185,16 @@ $(document).on('page:change', function(event) {
     if (art_creator == null) {
       return "s"; 
     } else {
-      return "/" + art_creator
+      return "s/" + art_creator
     }
   } 
 
   function setArtCreator(art_creator) {
     if (art_creator == null) {
+      console.log('eval being checked')
       return "unknown"
     } else {
-      return _.result(_.findWhere(artists_list, {'id': art_creator}), 'username');
+      var result =  _.result(_.findWhere(artists_list, {'id': +art_creator}), 'username');      return result; 
     }
   }
 
@@ -203,5 +216,4 @@ $(document).on('page:change', function(event) {
       infowindow.open(map, this);
     });
   }
-
 });

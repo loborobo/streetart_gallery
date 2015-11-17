@@ -8,7 +8,7 @@ StreetartGallery::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :artworks
   resources :users, except: [:index]
-  resources :artists, only: [:show,]
+  resources :artists, only: [:index, :show,]
  
   
   get "main/index"
