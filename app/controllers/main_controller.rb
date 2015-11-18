@@ -1,7 +1,8 @@
 class MainController < ApplicationController
 
   def index
-    gon.artworks = Artwork.all
+    @artworks = Artwork.all
+    gon.artworks = @artworks
     gon.artists = Artist.all
   end
 

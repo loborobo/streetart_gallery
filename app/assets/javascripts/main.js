@@ -85,14 +85,34 @@ $(document).on('page:change', function(event) {
   $('.artworks').on("mouseenter", "img", function(){
     paused = true; 
     $(this).addClass('highlightClass')
-    
+    setSidePageInfo();
+    openSidePage();
   })
 
   $('.artworks').on("mouseleave", "img", function(){
     paused = false;
     $(this).removeClass('highlightClass')
+    closeSidePage();
   })
   
+  function openSidePage() {
+    $('#about').animate({
+      left: '0px'
+    }, 400, 'easeOutCubic');
+  };
+
+  function closeSidePage() {
+    $('#about').animate({
+      left: '-350px'
+    }, 400, 'easeOutQuint');
+  }
+
+  function setSidePageInfo() {
+    var info = '<div class="slideout_info"><p><b>Title: </b></p><p>'+artworks_list[i].name+'</p><p><b>Artist: </b></p><p>'+setArtCreator(artworks_list[i].creator)+'</p></div>'
+
+    $('#about').html(info);
+  }
+
   function initPic() {
     var imageTag = "<img src="+ artworks_list[i].image.url+">"
     $('.artworks').html(imageTag)

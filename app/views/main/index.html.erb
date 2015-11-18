@@ -1,5 +1,13 @@
 
-<!-- <div class='art_listings'></div> -->
+<div class='art_listings'>
+  <% @artworks.each do |art| %>
+    <div class='art_listing'>
+      <div class="art_icon"><img src="<%= art.image.url %>"/></div>
+      <div class="text"><p><b>Title: </b><%= art.name %></p><p><b>Artist: </b> <% art.creator %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
 <div id="about"></div>
 
 <div class="jumbotron artworks_container">
@@ -21,23 +29,3 @@
   </div>
 </div>
 <div id="main_map" class="main_map_container"></div>
-
-
-    
-    
-<!-- <button type="button" class="btn btn-default" aria-label="Left Align">
-  <span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span>
-</button> 
-
-<button type="button" class="btn btn-default" aria-label="Left Align">
-  <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span>
-
-<button type="button" class="btn btn-default" aria-label="Left Align">
-  <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
-</button>
-
-<button type="button" class="btn btn-default" aria-label="Left Align">
-  <span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
-</button>
-
-</button>-->

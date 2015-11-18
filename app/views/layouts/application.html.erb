@@ -4,6 +4,7 @@
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
   <title>StreetartGallery</title>
+    <%= include_gon %>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -14,7 +15,7 @@
   src="//maps.googleapis.com/maps/api/js?key=AIzaSyBUUGp7a-1sOHPgm_NwHA2e8HasF75Tomo" type="text/javascript"></script>
 </head>
 <body>
-  <%= include_gon %>
+
   <%= render 'layouts/header' %>
   <div id="main">
     <%= yield %>
