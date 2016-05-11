@@ -1,10 +1,11 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.6'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+#gem 'sqlite3'
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -43,7 +44,10 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'capistrano', group: :development
 
 # Use debugger
-gem 'debugger', group: [:development, :test]
+#gem 'debugger', group: [:development, :test]
+
+#Use byebug since debugger won't run
+gem 'byebug', group: [:development, :test]
 
 # Use for uploading images
 gem 'carrierwave'
@@ -57,5 +61,7 @@ gem 'gon'
 gem 'pry'
 
 gem 'lodash-rails'
+
+gem 'rails_12factor', group: [:production]
 
 
