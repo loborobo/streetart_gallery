@@ -1,8 +1,4 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
+
 development:
   adapter: postgresql
   database: streetart_gallery_dev
@@ -19,7 +15,8 @@ test:
   timeout: 5000
 
 production:
+  # url: postgres://lfaumcrypvanmq:_Af-lKlsPEAw4aLbgxKWunMeoH@ec2-54-235-221-3.compute-1.amazonaws.com:5432/d86hvjf69qmcoe
   adapter: postgresql
-  database: streetart_gallery_prod
+  database: d86hvjf69qmcoe
   pool: 5
   timeout: 5000
