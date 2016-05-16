@@ -26,6 +26,7 @@ class ArtworksController < ApplicationController
   # POST /artworks.json
   def create
     @artwork = Artwork.new(artwork_params)
+    byebug; 
 
     if @artwork.save
      redirect_to main_index_path, flash[:notice] = 'Artwork was successfully created.' 

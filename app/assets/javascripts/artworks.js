@@ -6,18 +6,6 @@ $(document).on('page:change', function(event) {
     initMap();
   };
 
-  function getLocation() {
-      if (navigator.geolocation) {
-          position = navigator.geolocation.getCurrentPosition(function(position) {
-            $('#artwork_latitude').val(position.coords.latitude)
-            $('#artwork_longitude').val(position.coords.longitude);
-          })
-      } else {
-          // does something better here...
-          alert("Geolocation is not supported by this browser.");
-      }
-  }
-
   var picker_map;
   function initMap() {
     picker_map = new google.maps.Map($('#mark_location')[0], {
@@ -44,6 +32,18 @@ $(document).on('page:change', function(event) {
     }
     $('#artwork_latitude').val(marker.position.lat());
     $('#artwork_longitude').val(marker.position.lng());
-  } 
+  }
+
+  function getLocation() {
+      if (navigator.geolocation) {
+          position = navigator.geolocation.getCurrentPosition(function(position) {
+            $('#artwork_latitude').val(position.coords.latitude)
+            $('#artwork_longitude').val(position.coords.longitude);
+          })
+      } else {
+          // does something better here...
+          alert("Geolocation is not supported by this browser.");
+      }
+  }
 
 });
