@@ -17,6 +17,6 @@ test:
 production:
   # url: postgres://lfaumcrypvanmq:_Af-lKlsPEAw4aLbgxKWunMeoH@ec2-54-235-221-3.compute-1.amazonaws.com:5432/d86hvjf69qmcoe
   adapter: postgresql
-  database: d86hvjf69qmcoe
+  database: streetart_gallery_dev
   pool: 5
   timeout: 5000

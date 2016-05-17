@@ -1,0 +1,178 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+
+
+.jumbotron {
+  padding: 0;
+  position: relative;
+  margin-bottom: 0;
+  text-align: center;
+  width: 75%;
+}
+
+header {
+  top: 0;
+  text-align: right;
+  background-color: lightgray;
+  height: 70px;
+  vertical-align: middle;
+}
+
+#main {
+  position: relative;
+  height: 100%; 
+  width: 100%;
+  overflow: hidden;
+  background-image: image-url("Brick-Wall-Background-bw.jpg");
+}
+
+#about { 
+ display: block;
+ color: white;
+ background-color:rgba(0,0,0,0.8);
+ width: 350px;
+ padding: 8px 11px;
+ padding-top: 35px;
+ position: absolute;
+ top: 0;
+ left: -350px;
+ height: 100%;
+ margin-top: 50px;
+ max-width: 30%;
+ z-index: 3;
+}
+
+.main_map_container {
+  display: block;
+  height: 50%;
+  width: 75%;
+}
+
+.artworks_container {
+  height: 50%;
+  background-color:rgba(0,0,0,0);
+}
+
+.artworks {
+  width: 100%;
+  height: 100%;
+}
+
+.artworks a {
+  display: inline-block;
+  height: 100%;
+}
+.artworks img {
+  display: block;
+  margin: auto;
+  max-height: 100%;
+  max-width: 100%;
+  vertical-align: middle;
+  position: relative;
+  top:50%;
+  transform: translateY(-50%);
+}
+
+.button_container {
+  margin: auto;
+}
+.slideshow_buttons {
+  position: relative;
+  bottom: 24px;
+  display: block;
+  margin: auto;
+  z-index: 2;
+}
+
+.btn-md {
+  border-width: 1px;
+  border-color: #333333
+}
+
+.art_thumb {
+  height: 105px; 
+  width: 105px;
+}
+
+.art_thumb img {
+  max-height: 100%;
+  max-width: 100%;
+  margin: auto; 
+}
+
+.navbar .container {
+  margin-left: 0;
+}
+
+.highlightClass {
+  -webkit-filter: brightness(1.15);
+}
+
+.art_listings {
+  margin-top: 50px;
+  display: block;
+  float: right;
+  height: 100%;
+  width: 25%;
+  background-color: rgba(0,0,0,0.5);
+  overflow: scroll;
+}
+
+.art_listing {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: white;
+  padding: 5px 5px;
+  border-width: 1px; 
+  border-style: solid;
+  border-radius: 8px;
+  margin: 2px 2px;
+  background-color: rgba(0,0,0,0.8);
+}
+
+.art_listing .text {
+  display: inline-block;
+  word-wrap: break-word;
+  width: 50%;
+  vertical-align: middle;
+  padding: 5px 5px;
+}
+
+.art_icon {
+  display: inline-block;
+  height: auto;
+  max-width: 100px;
+  width: 40%;
+  max-height: 100px;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.art_icon img {
+  width: 100%;
+  bottom: 0;
+}
+
+#main_map {
+
+}
+
+#pause {
+  
+}
+
+#play {
+  
+}
+
+#next {
+
+}
+
+#previous {
+
+}
