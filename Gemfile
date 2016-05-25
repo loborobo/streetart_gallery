@@ -40,6 +40,8 @@ gem 'bcrypt', '~> 3.1.2'
 gem 'rack-oauth2'
 gem 'imgurapi'
 
+gem 'figaro'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
