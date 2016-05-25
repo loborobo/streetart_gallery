@@ -26,9 +26,13 @@ class ArtworksController < ApplicationController
   # POST /artworks.json
   def create
     @artwork = Artwork.new(artwork_params)
-
+    @@imgur_session = Imgurapi::Session.new(client_id: 'c99e6fc7811fdfa', client_secret: '1739de204a913b055357b98f441366bc3bd8958b', access_token: '321c75bad871ef8cc35c9f8d2a3aa6897b62c719', refresh_token: 'dadca22654628a7b7bbc406e3faf9d6506fc30f6')
+    image = @@imgur_session.image.image_upload(@artwork.image.file.file)
+    @artwork.imgur_link = image.link
+    @artwork.imgur_hash = image.hash.to_s
     if @artwork.save
-     redirect_to main_index_path, flash[:notice] = 'Artwork was successfully created.' 
+     redirect_to main_index_path
+     # , flash[:notice] = 'Artwork was successfully created.' 
     else
       render action: 'new'
     end
