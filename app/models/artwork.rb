@@ -3,8 +3,6 @@ class Artwork < ActiveRecord::Base
   has_many :favourites
   has_many :submissions
 
-  mount_uploader :image, ImageUploader
-
   validates :name, :image, :latitude, :longitude, presence: true
 
 end

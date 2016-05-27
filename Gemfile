@@ -55,7 +55,7 @@ gem 'figaro'
 gem 'byebug', group: [:development, :test]
 
 # Use for uploading images
-gem 'carrierwave'
+
 gem 'rmagick'
 
 # Use for assistance with accessing coordinates in database and passing to google maps

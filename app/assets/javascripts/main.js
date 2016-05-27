@@ -39,7 +39,8 @@ $(document).on('page:change', function(event) {
   }
 
   function slideAway() {
-    $('.artworks').hide('slide', {direction: 'left'}, 1000);
+    $('.artworks').animate()
+    // $('.artworks').hide('slide', {direction: 'left'}, 1000);
   }
 
   function slideIn() {

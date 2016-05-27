@@ -27,9 +27,9 @@ class ArtworksController < ApplicationController
   def create
     @artwork = Artwork.new(artwork_params)
     @@imgur_session = Imgurapi::Session.new(client_id: ENV['IMGUR_CLIENT_ID'], client_secret: ENV['IMGUR_CLIENT_SECRET'], access_token: ENV['IMGUR_ACCESS_TOKEN'], refresh_token: ENV['IMGUR_REFRESH_TOKEN'])
-    image = @@imgur_session.image.image_upload(@artwork.image.file.file)
-    @artwork.imgur_link = image.link
-    @artwork.imgur_hash = image.hash.to_s
+    image = @@imgur_session.image.image_upload(@artwork.image.tempfile.path)
+    @artwork.imgur_hash = image.hash
+    @artwork.image = image.link
     if @artwork.save
      redirect_to main_index_path
      # , flash[:notice] = 'Artwork was successfully created.' 
