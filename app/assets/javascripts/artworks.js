@@ -1,5 +1,4 @@
 $(document).on('page:change', function(event) {
-  console.log('artwork.js loaded')
   $('#gps_link').click(getLocation);
 
   if ($('#mark_location').length > 0) {

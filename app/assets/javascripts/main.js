@@ -1,7 +1,6 @@
 var iterate_slideshow; 
 
 $(document).on('page:change', function(event) {
-  console.log('main.js loaded')
 
 // #artwork and #main_map div
 
@@ -39,8 +38,7 @@ $(document).on('page:change', function(event) {
   }
 
   function slideAway() {
-    $('.artworks').animate()
-    // $('.artworks').hide('slide', {direction: 'left'}, 1000);
+    $('.artworks').hide('slide', {direction: 'left'}, 1000);
   }
 
   function slideIn() {
@@ -149,7 +147,6 @@ $(document).on('page:change', function(event) {
   // initialize map and set markers, populate marker window info
 
   function initMainMap() {
-    console.log("init map called");
     map = new google.maps.Map($('#main_map')[0], {
       center: {lat: 43.657, lng: -79.400},
       zoom: 15
@@ -168,7 +165,6 @@ $(document).on('page:change', function(event) {
   }
 
   function setMarkers() {
-    console.log("setting markers")
     var infowindow = null; 
     for (var i = 0; i < artworks_list.length; i++)  {
       var latitude = artworks_list[i].latitude;
@@ -188,7 +184,6 @@ $(document).on('page:change', function(event) {
   } 
 
   function setMarkerWindows() {
-    console.log(artworks_list)
     for (var i = 0; i < artworks_list.length; i++) {
       var marker = artworks_list[i].marker;
       var art_info = '<div>'+
@@ -212,7 +207,6 @@ $(document).on('page:change', function(event) {
 
   function setArtCreator(art_creator) {
     if (art_creator == null) {
-      console.log('eval being checked')
       return "unknown"
     } else {
       var result =  _.result(_.findWhere(artists_list, {'id': +art_creator}), 'username');      return result; 
