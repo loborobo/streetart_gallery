@@ -3,7 +3,7 @@
   <% @artworks.each do |art| %>
     <div class='art_listing'>
       <div class="art_icon"><img src="<%= art.imgur_link %>"/></div>
-      <div class="text"><p><b>Title: </b><%= art.name %></p><p><b>Artist: </b> <% art.creator %></p>
+      <div class="text"><p><b>Title: </b><%= art.name %></p><p><b>Artist: </b> <%= art.creator || "Unknown" %></p>
       </div>
     </div>
   <% end %>

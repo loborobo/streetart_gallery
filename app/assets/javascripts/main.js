@@ -207,7 +207,7 @@ $(document).on('page:change', function(event) {
 
   function setArtCreator(art_creator) {
     if (art_creator == null) {
-      return "unknown"
+      return "Unknown"
     } else {
       var result =  _.result(_.findWhere(artists_list, {'id': +art_creator}), 'username');      return result; 
     }
