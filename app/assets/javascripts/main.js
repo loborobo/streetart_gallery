@@ -137,7 +137,7 @@ $(document).on('page:change', function(event) {
     var image_lat = current_art.latitude;
     var image_lng = current_art.longitude;
     marker_to_change = artworks_list[i].marker
-    imageTag = '<a href="/artworks/'+artworks_list[i].id+'"><img src="'+ current_art.imgur_link +'"></a>'
+    imageTag = '<a href="/artworks/'+artworks_list[i].id+'"><img src="'+ current_art.image +'"></a>'
     $('.artworks').html(imageTag)
     map.panTo(new google.maps.LatLng(image_lat, image_lng));
     marker_to_change.setIcon(pinSymbol(yellow_marker))
